@@ -1,0 +1,38 @@
+.scanner-page {
+    min-height: 100vh;
+    background: #b89178;
+    padding: 24px 16px 60px;
+    font-family: 'Inter', system-ui, sans-serif;
+    text-align: center;
+}
+
+.scanner-page h1 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #4a2f1c;
+    margin: 0 0 20px 0;
+}
+
+.scanner-frame {
+    background: #cfa588;
+    border-radius: 24px;
+    padding: 16px;
+    max-width: 380px;
+    margin: 0 auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.scanner-page p {
+    color: #4a2f1c;
+    font-weight: 600;
+    margin: 16px 0 8px 0;
+}
+
+.scanner-back-link {
+    display: inline-block;
+    color: #7a4a2e;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 4px;
+}
