@@ -4,14 +4,18 @@ import './shared.css'
 import './Dashboard.css'
 
 function Dashboard() {
-    const pin = sessionStorage.getItem('ownerPin')
+    const token = sessionStorage.getItem('ownerToken')
     const [customers, setCustomers] = useState([])
     const [redeemCode, setRedeemCode] = useState("")
     const [message, setMessage] = useState("")
     const [showAll, setShowAll] = useState(false)
 
     function loadCustomers() {
-        fetch(`https://192.168.1.148:8000/api/owner/1/customers?pin=${pin}`)
+        fetch(`https://192.168.1.148:8000/api/owner/1/customers`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(response => response.json())
             .then(data => setCustomers(data))
     }
@@ -21,9 +25,12 @@ function Dashboard() {
     }, [])
 
     function handleVerifyCode() {
-        fetch(`https://192.168.1.148:8000/owner/1/verify-code?pin=${pin}`, {
+        fetch(`https://192.168.1.148:8000/owner/1/verify-code`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Bearer ${token}`
+            },
             body: `code=${redeemCode}`
         })
             .then(response => {

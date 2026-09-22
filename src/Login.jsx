@@ -11,17 +11,24 @@ function Login() {
 
     function handleLogin() {
         setError("")
-        fetch(`https://192.168.1.148:8000/owner/1?pin=${pin}`)
+        fetch(`https://192.168.1.148:8000/owner/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `shop_id=1&pin=${pin}`
+        })
             .then(response => {
                 if (response.ok) {
-                    sessionStorage.setItem('ownerPin', pin)
-                    navigate('/dashboard')
+                    return response.json()
                 } else {
-                    setError(`Server responded with error: ${response.status}`)
+                    throw new Error(`Server responded with error: ${response.status}`)
                 }
             })
+            .then(data => {
+                sessionStorage.setItem('ownerToken', data.token)
+                navigate('/dashboard')
+            })
             .catch(err => {
-                setError(`Network error: ${err.message}`)
+                setError(err.message)
             })
     }
 

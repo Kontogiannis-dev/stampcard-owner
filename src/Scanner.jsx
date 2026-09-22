@@ -5,7 +5,7 @@ import './shared.css'
 import './Scanner.css'
 
 function Scanner() {
-    const pin = sessionStorage.getItem('ownerPin')
+    const token = sessionStorage.getItem('ownerToken')
     const [message, setMessage] = useState("Point camera at customer's QR code")
     const navigate = useNavigate()
     const hasScanned = useRef(false)
@@ -14,16 +14,19 @@ function Scanner() {
         if (hasScanned.current) return
         hasScanned.current = true
 
-        fetch(`https://192.168.1.148:8000/owner/1/stamp?pin=${pin}`, {
+        fetch(`https://192.168.1.148:8000/owner/1/stamp`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Bearer ${token}`
+            },
             body: `identifier=${decodedText}`
         })
             .then(response => {
                 if (response.ok) {
                     navigate('/dashboard')
                 } else {
-                    setMessage(`Failed to add stamp — check PIN or customer ID`)
+                    setMessage(`Failed to add stamp — check login or customer ID`)
                     hasScanned.current = false
                 }
             })
