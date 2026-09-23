@@ -36,3 +36,25 @@
     text-decoration: none;
     margin-top: 4px;
 }
+.scan-toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-align: center;
+    max-width: 90%;
+}
+.scan-toast-stamped {
+    background-color: #2e7d32;   /* green */
+}
+
+.scan-toast-redeemed {
+    background-color: #c9971e;   /* gold */
+}

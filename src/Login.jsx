@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import './shared.css'
 import './Login.css'
 
+
+const HOST_IP = import.meta.env.VITE_HOST_IP
+
+
 function Login() {
     const [pin, setPin] = useState("")
     const [error, setError] = useState("")
@@ -11,7 +15,7 @@ function Login() {
 
     function handleLogin() {
         setError("")
-        fetch(`https://192.168.1.148:8000/owner/login`, {
+        fetch(`https://${HOST_IP}:8000/owner/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `shop_id=1&pin=${pin}`
