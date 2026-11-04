@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './shared.css'
 import './Dashboard.css'
-
-const HOST_IP = import.meta.env.VITE_HOST_IP
+import { API_URL } from './config'
 
 function Dashboard() {
     const token = sessionStorage.getItem('ownerToken')
@@ -11,7 +10,7 @@ function Dashboard() {
     const [showAll, setShowAll] = useState(false)
 
     function loadCustomers() {
-        fetch(`https://${HOST_IP}:8000/api/owner/1/customers`, {
+        fetch(`${API_URL}/api/owner/1/customers`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

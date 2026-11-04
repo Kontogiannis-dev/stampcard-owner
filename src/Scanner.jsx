@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import './shared.css'
 import './Scanner.css'
 
-const HOST_IP = import.meta.env.VITE_HOST_IP
+import { API_URL } from './config'
 
 function Scanner() {
     const token = sessionStorage.getItem('ownerToken')
@@ -26,7 +26,7 @@ function Scanner() {
             }
         }
 
-        fetch(`https://${HOST_IP}:8000/owner/1/stamp`, {
+        fetch(`${API_URL}/owner/1/stamp`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
